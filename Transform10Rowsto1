@@ -1,0 +1,27 @@
+Sub Transform10RowsTo1()
+'Updateby20131120
+Dim InputRng As Range, OutRng As Range
+xTitleId = "KutoolsforExcel"
+Set InputRng = Application.Selection
+Set InputRng = Application.InputBox("Ranges to be transform :", xTitleId, InputRng.Address, Type:=8)
+Set OutRng = Application.InputBox("Paste to (single cell):", xTitleId, Type:=8)
+Application.ScreenUpdating = False
+xRows = InputRng.Rows.Count 'counts the number of rows
+xCols = InputRng.Columns.Count 'counts the number of columns
+For i = 1 To xRows Step 9
+    i2 = 1
+    i3 = i + 10
+    sequence = 0
+   ' shift = i - 1
+    For i4 = i To i3 'loops through all the rows
+        InputRng.Rows(i4).Copy OutRng 'Copy the items in row to the inputrow
+        If i4 Mod 10 = 0 Then ' when the 10th row has been reached, we shift down
+            sequence = 1
+        End If
+        Set OutRng = OutRng.Offset(sequence, xCols)  'set the inputrow into the row to copy
+        sequence = 0
+    Next
+    i2 = i2 + 1
+Next
+Application.ScreenUpdating = True
+End Sub
