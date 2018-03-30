@@ -1,5 +1,5 @@
 Sub Transform10RowsTo1()
-'Updateby20131120
+'UpdatedMarch29 with Visual Basic
 Dim InputRng As Range, OutRng As Range
 xTitleId = "KutoolsforExcel"
 Set InputRng = Application.Selection
